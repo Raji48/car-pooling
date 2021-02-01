@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
 import 'dart:io';
 
@@ -31,7 +32,7 @@ class _RegisterState extends State<Register> {
     child: Column(
       //  crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          SizedBox(height: 100,),
+          SizedBox(height: 50,),
           Text("Complete your Profile",style: TextStyle(color: Colors.black, fontSize: 20,fontWeight: FontWeight.bold,)),
           Text("Complete your registration process by filling the details below",style: TextStyle(color: Colors.grey, fontSize: 15,),),
          //]
@@ -39,7 +40,7 @@ class _RegisterState extends State<Register> {
 
     // child:Column(
        //   children: <Widget>[
-         SizedBox(height: 40,),
+       //  SizedBox(height: 40,),
            Container(
             child: Stack(children: [
               CircleAvatar(
@@ -70,7 +71,7 @@ class _RegisterState extends State<Register> {
             ],
             ),
           ),
-            SizedBox(height: 20,),
+            //SizedBox(height: 20,),
              Text("Basic details"),
         SizedBox(height: 20.0,),
         TextField(
@@ -87,15 +88,11 @@ class _RegisterState extends State<Register> {
             //  errorText: snapshot.error),
           ),
         ),
-          SizedBox(height: 20.0,),
+         // SizedBox(height: 20.0,),
           TextField(
             keyboardType: TextInputType.name,
             decoration: InputDecoration(
-              focusedBorder: OutlineInputBorder(
-                  borderSide: BorderSide(
-                      color: Colors.tealAccent
-                  )
-              ),
+              focusedBorder: OutlineInputBorder(borderSide: BorderSide(color: Colors.tealAccent )),
               hintText: "Input Text",
               labelText: "Last Name",
               labelStyle: TextStyle(color: Colors.grey),
@@ -103,21 +100,22 @@ class _RegisterState extends State<Register> {
             ),
           ),
 
-          TextFormField(
+          TextField(
            //style: TextStyle(fontSize: 24   ),
             //controller: _phoneNumberController,
+            //focusNode: _mobileFocus,
+            maxLength: 10,
             keyboardType: TextInputType.phone,
+              inputFormatters: <TextInputFormatter>[
+                FilteringTextInputFormatter.digitsOnly
+              ],
             decoration: InputDecoration(
-                prefixText: "+1 ",
+                focusedBorder: OutlineInputBorder(borderSide: BorderSide(color: Colors.tealAccent )),
+                prefixText: "+91 ",
                 labelText: 'Phone number'),
-            validator: (String value) {
-              if (value.isEmpty) {
-                return 'Phone number (+x xxx-xxx-xxxx)';
-              }
-              return null;
-            },
+
           ),
-          SizedBox(height: 20.0,),
+         // SizedBox(height: 20.0,),
           TextField(
 
             keyboardType: TextInputType.emailAddress,
@@ -133,9 +131,79 @@ class _RegisterState extends State<Register> {
               //  errorText: snapshot.error),
             ),
           ),
+          //SizedBox(height: 20,),
+          FlatButton.icon(
+             icon:Icon(Icons.lock),
+            label:Text("Password details",style: TextStyle(color: Colors.black),) ),
+         // SizedBox(height: 20,),
+          TextField(
+            keyboardType: TextInputType.text,
+            obscureText: true,
+            decoration: InputDecoration(
 
-        ]
+              focusedBorder: OutlineInputBorder(
+                  borderSide: BorderSide(
+                      color: Colors.tealAccent
+                  )
+              ),
+              hintText: "Input Text",
+              labelText: "Password",
+              labelStyle: TextStyle(color: Colors.grey),
+              //suffixIcon: Icon(Icons.visibility,color: Colors.grey,),
+
+              // errorText: snapshot.error),
+            ),
+          ),
+          //SizedBox(height: 20,),
+          TextField(
+            keyboardType: TextInputType.text,
+            obscureText: true,
+            decoration: InputDecoration(
+
+              focusedBorder: OutlineInputBorder(
+                  borderSide: BorderSide(
+                      color: Colors.tealAccent
+                  )
+              ),
+              hintText: "Input Text",
+              labelText: "Confirm Password",
+              labelStyle: TextStyle(color: Colors.grey),
+              //suffixIcon: Icon(Icons.visibility,color: Colors.grey,),
+
+              // errorText: snapshot.error),
+            ),
+          ),
+          Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children:<Widget>[
+                ButtonTheme(
+                 // minWidth: 400,
+                //  height: 40,
+                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+                  child: RaisedButton(
+                    color: Colors.white,
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                    child: Text("CANCEL"),
+                  ),
+
+                ),
+                ButtonTheme(
+                  // minWidth: 400,
+                  //  height: 40,
+                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+                  child: RaisedButton(
+                    color: Colors.tealAccent,
+                    onPressed: () {},
+                    child: Text("SUBMIT&PROCEED"),
+                  ),
+
+                ),
+              ])
+             ]
     )
+
     ))  )
         )
     );

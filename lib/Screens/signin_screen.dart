@@ -37,7 +37,7 @@ class _SigninState extends State<Signin>{
         onTap: (){
       FocusScope.of(context).unfocus();
          },
-     //SingleChildScrollView(
+     child:SingleChildScrollView(
 
         child: Container(
           height: MediaQuery.of(context).size.height,
@@ -130,7 +130,7 @@ class _SigninState extends State<Signin>{
             ],
           ),
         ),
-      ),
+      )),
     );
   }
 }
