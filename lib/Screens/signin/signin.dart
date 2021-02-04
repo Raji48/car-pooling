@@ -2,6 +2,8 @@
 import 'package:carpooling/Screens/register/register.dart';
 import 'package:flutter/material.dart';
 
+
+
 //import '../main.dart';
 
 
@@ -22,26 +24,85 @@ class _SigninState extends State<Signin>{
     });
   }
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
 
+    return  Scaffold(
 
-    return new Scaffold(
       backgroundColor: Colors.white,
       resizeToAvoidBottomPadding: false,
+
       body:GestureDetector(
-          onTap: (){
+         onTap: (){
             FocusScope.of(context).unfocus();
           },
           child:SingleChildScrollView(
 
-            child: Container(
-              height: MediaQuery.of(context).size.height,
-              padding: EdgeInsets.all(16),
-              child: Column(
 
-                // mainAxisSize: MainAxisSize.max,
-                mainAxisAlignment: MainAxisAlignment.center,
+           child: Container(
+           // height: MediaQuery.of(context).size.height,
+             width: double.infinity,
+             height: size.height,
+             // padding: EdgeInsets.all(16),
+              child: Column(
+                //mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
-                  SizedBox(height: 300.0,),
+               Positioned(
+                top: 0,
+                left: 0,
+                  child:const SizedBox(
+                    width: 650.0,
+                    height: 300.0,
+                    child: const DecoratedBox(
+                      decoration: const BoxDecoration(
+                        borderRadius: BorderRadius.only(
+                            bottomRight: Radius.circular(40.0),
+                            bottomLeft: Radius.circular(40.0)),
+                            color: Color(0xFFA7FFEB),
+                        image: DecorationImage(
+                          image: AssetImage(
+                              'assets/images/runinglate.png',),
+                         // fit: BoxFit.fill,
+                        ),
+
+                      ),
+                    ),
+                  ),
+                ),
+
+
+             /* Padding(
+              padding: EdgeInsets.all(40.0),
+               child: Column(
+               crossAxisAlignment: CrossAxisAlignment.start,
+               children: <Widget>[
+                 Center(
+                   child: Image(
+                     image: AssetImage(
+                       'assets/images/runinglate.png',
+                     ),
+                     height: 100.0,
+                     width: 300.0,
+                   ),
+                 ),
+                 /*SizedBox(height: 30.0),
+                 Text(
+                  'Running Late?'
+                 ),
+                 SizedBox(height: 15.0),
+                 Text(
+                   'Ride With Us!'
+                 ),*/
+               ],
+             ),
+           ),*/
+
+
+             Padding(
+               padding: EdgeInsets.all(16),
+               child: Column(
+                // crossAxisAlignment: CrossAxisAlignment.start,
+                 children: <Widget>[
+                  SizedBox(height: 30.0,),
                   TextField(
 
                     keyboardType: TextInputType.emailAddress,
@@ -51,6 +112,10 @@ class _SigninState extends State<Signin>{
                               color: Colors.tealAccent
                           )
                       ),
+                      contentPadding:const EdgeInsets.all(5),
+                      enabledBorder: UnderlineInputBorder(
+                          borderSide: BorderSide(color: Colors.grey)),
+
                       hintText: "Input Text",
                       labelText: "Work Email",
                       labelStyle: TextStyle(color: Colors.grey),
@@ -62,12 +127,13 @@ class _SigninState extends State<Signin>{
                     keyboardType: TextInputType.text,
                     obscureText: _obscuredText,
                     decoration: InputDecoration(
-
                         focusedBorder: OutlineInputBorder(
                             borderSide: BorderSide(
                                 color: Colors.tealAccent
                             )
                         ),
+                       // contentPadding:const EdgeInsets.all(5),
+
                         hintText: "Input Text",
                         labelText: "Password",
                         labelStyle: TextStyle(color: Colors.grey),
@@ -110,8 +176,8 @@ class _SigninState extends State<Signin>{
                           ]
                       )
                   ),
-                  SizedBox(height: 40.0,),
-                  Text("New User?", style: TextStyle(color: Colors.grey, fontSize: 13,),),
+                  SizedBox(height: 20.0,),
+                  Text("New User?", style: TextStyle(color: Colors.grey, fontSize: 13,),textAlign:TextAlign.center,),
                   SizedBox(height: 20.0,),
                   ButtonTheme(
                     minWidth: 400,
@@ -127,6 +193,8 @@ class _SigninState extends State<Signin>{
                       child: Text("REGISTER NOW"),
                     ),
                   ),
+                    ],
+               )),
                 ],
               ),
             ),

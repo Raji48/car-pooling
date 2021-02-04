@@ -21,6 +21,7 @@ class _SplashState extends State<Splash> {
   @override
   Widget build(BuildContext context) {
     return  Scaffold(
+
       backgroundColor: Colors.tealAccent,
       body:
       Container(
@@ -45,11 +46,11 @@ class _SplashState extends State<Splash> {
            // SizedBox(height: 200,),
         Expanded(
         child:
-      Align(
+            Align(
               alignment: Alignment.bottomCenter,
-              child: new Image.asset('assets/optisollogo.png',width:170 ,),
+              child: new Image.asset('assets/images/optisollogo.png',width:170 ,),
           ))
-    ]),
+        ]),
 
 
    // )

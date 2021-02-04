@@ -34,6 +34,7 @@ class _MyAppState extends State<MyApp> {
 
 
     return new MaterialApp(
+      debugShowCheckedModeBanner: false,
       home: Splash(),
        // home: Scaffold(
 
