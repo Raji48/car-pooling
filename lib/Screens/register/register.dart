@@ -1,3 +1,5 @@
+import 'package:carpooling/Utilis/function.dart';
+import 'package:carpooling/Utilis/style.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
@@ -25,32 +27,34 @@ class _RegisterState extends State<Register> {
             child: SafeArea(
                 child: SingleChildScrollView(
                     child: Container(
-                        height: MediaQuery.of(context).size.height,
-                        padding: EdgeInsets.all(5),
+                        //height: MediaQuery.of(context).size.height,
+                        padding: EdgeInsets.all(17),
                         child: Column(
-                          //  crossAxisAlignment: CrossAxisAlignment.start,
+                           crossAxisAlignment: CrossAxisAlignment.start,
                             children: <Widget>[
-                              SizedBox(height: 50,),
-                              Text("Complete your Profile",style: TextStyle(color: Colors.black, fontSize: 20,fontWeight: FontWeight.bold,)),
-                              Text("Complete your registration process by filling the details below",style: TextStyle(color: Colors.grey, fontSize: 15,),),
-                              //]
-                              // )
+                              SizedBox(height: 10,),
+                              Align(alignment: Alignment.topLeft,
+                                  child:IconButton(
+                                    icon: Icon(Icons.arrow_back, color: Colors.black),
+                                    onPressed: () => Navigator.of(context).pop(),
 
-                              // child:Column(
-                              //   children: <Widget>[
-                                //SizedBox(height: 20,),
-                              Container(
+                                  )),
+                              SizedBox(height: 20,),
+                              Text("Complete your Profile",style: kTitlestyle,),
+                              SizedBox(height: 10,),
+                              Text("Complete your registration process by filling the details below",style: kSubtitlestyle,),
+                                SizedBox(height: 20,),
+                              Center(
                                 child: Stack(children: [
-                                  CircleAvatar(
+                                 CircleAvatar(
                                     radius: 60.0,
-                                    backgroundImage:_imageFile == null ?   NetworkImage(
+                                    backgroundImage:_imageFile == null ?   NetworkImage(//'http://www.personal.psu.edu/kbl5192/jpg.jpg')
                                         'https://t4.ftcdn.net/jpg/03/46/93/61/360_F_346936114_RaxE6OQogebgAWTalE1myseY1Hbb5qPM.jpg')
                                         :FileImage(File(_imageFile.path)),
-
                                   ),
-                                  Positioned(
-                                    bottom: 20.0,
-                                    right: 20.0,
+                                Positioned(
+                                    bottom: 0,
+                                    right: 0,
                                     child: InkWell(
                                       onTap: () {
                                         showModalBottomSheet(
@@ -58,120 +62,94 @@ class _RegisterState extends State<Register> {
                                           builder: ((builder) => bottomSheet()),
                                         );
                                       },
+                                  child:Container(
+                                    height: 40,
+                                      width: 40,
+                                      decoration: BoxDecoration(
+                                        shape: BoxShape.circle,
+                                        border: Border.all(
+                                          width: 4,
+                                         color: Theme.of(context).scaffoldBackgroundColor,
+                                        ),
+                                        color:Colors.white,
+                                      ),
                                       child: Icon(
                                           Icons.camera_alt, color: Colors.grey,
                                           size: 28.0
                                       ),
                                     ),
+                                  ),//),
+
+                                  //)
+                                )],
+                                ),
+                              ),
+                              SizedBox(height: 10,),
+                              FlatButton.icon(
+                                  icon:Icon(Icons.info),
+                                  label:Text("Basic details",style: TextStyle(color: Colors.black),) ),
+                              SizedBox(height: 10),
+                              buildTextField("First Name",false),
+                              buildTextField("Last Name",false),
+
+                              SizedBox(height: 10),
+
+                             new Row(
+                            //  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                         children: <Widget>[
+                           //SizedBox(width: 20.0,),
+                             new Flexible(
+                                   child: new TextField(
+                                     keyboardType: TextInputType.phone,
+                                     inputFormatters: <TextInputFormatter>[
+                                       FilteringTextInputFormatter.digitsOnly
+                                     ],
+                                  decoration: InputDecoration(
+                                      enabledBorder: OutlineInputBorder(
+                                        borderSide: BorderSide(color: Colors.grey, width: 2.0),),
+                                      focusedBorder: OutlineInputBorder(
+                                         borderSide: BorderSide(color: Colors.tealAccent )),
+                                     //  prefixText: "+91 ",
+
+                                          labelText: '+91',
                                   ),
 
-                                ],
-                                ),
-                              ),
-                              //SizedBox(height: 20,),
-                              Text("Basic details"),
-                              SizedBox(height: 20.0,),
-                              TextField(
-                                keyboardType: TextInputType.name,
-                                decoration: InputDecoration(
-                                  focusedBorder: OutlineInputBorder(
-                                      borderSide: BorderSide(
-                                          color: Colors.tealAccent
-                                      )
-                                  ),
-                                  hintText: "Input Text",
-                                  labelText: "First Name",
-                                  labelStyle: TextStyle(color: Colors.grey),
-                                  //  errorText: snapshot.error),
-                                ),
-                              ),
-                              // SizedBox(height: 20.0,),
-                              TextField(
-                                keyboardType: TextInputType.name,
-                                decoration: InputDecoration(
-                                  focusedBorder: OutlineInputBorder(borderSide: BorderSide(color: Colors.tealAccent )),
-                                  hintText: "Input Text",
-                                  labelText: "Last Name",
-                                  labelStyle: TextStyle(color: Colors.grey),
-                                  //  errorText: snapshot.error),
-                                ),
-                              ),
+                                  )
+                                 ),
+                                 SizedBox(width: 20.0,),
+                                 new Flexible(
 
-                              TextField(
-                                //style: TextStyle(fontSize: 24   ),
-                                //controller: _phoneNumberController,
-                                //focusNode: _mobileFocus,
-                                maxLength: 10,
-                                keyboardType: TextInputType.phone,
-                                inputFormatters: <TextInputFormatter>[
-                                  FilteringTextInputFormatter.digitsOnly
-                                ],
-                                decoration: InputDecoration(
-                                    focusedBorder: OutlineInputBorder(borderSide: BorderSide(color: Colors.tealAccent )),
-                                    prefixText: "+91 ",
-                                    labelText: 'Phone number'),
+                                  child: new TextField(
+                                      keyboardType: TextInputType.phone,
+                                       inputFormatters: <TextInputFormatter>[
+                                        FilteringTextInputFormatter.digitsOnly
+                                       ],
+                                     decoration: InputDecoration(
+                                   // contentPadding: EdgeInsets.all(10),
+                                         enabledBorder: OutlineInputBorder(
+                                           borderSide: BorderSide(color: Colors.grey, width: 2.0),),
+                                         focusedBorder: OutlineInputBorder(
+                                             borderSide: BorderSide(color: Colors.tealAccent )),
+                                         // prefixText: "+91 ",
+                                         labelText: 'phone number')
 
-                              ),
-                              // SizedBox(height: 20.0,),
-                              TextField(
+                                      ))
 
-                                keyboardType: TextInputType.emailAddress,
-                                decoration: InputDecoration(
-                                  focusedBorder: OutlineInputBorder(
-                                      borderSide: BorderSide(
-                                          color: Colors.tealAccent
-                                      )
-                                  ),
-                                  hintText: "Input Text",
-                                  labelText: "Work Email",
-                                  labelStyle: TextStyle(color: Colors.grey),
-                                  //  errorText: snapshot.error),
-                                ),
-                              ),
-                              //SizedBox(height: 20,),
+                                 ]
+                             ),
+                              SizedBox(height: 10.0,),
+                              buildTextField("Work Email",false),
+                              SizedBox(height: 10,),
                               FlatButton.icon(
                                   icon:Icon(Icons.lock),
                                   label:Text("Password details",style: TextStyle(color: Colors.black),) ),
-                              // SizedBox(height: 20,),
-                              TextField(
-                                keyboardType: TextInputType.text,
-                                obscureText: true,
-                                decoration: InputDecoration(
-
-                                  focusedBorder: OutlineInputBorder(
-                                      borderSide: BorderSide(
-                                          color: Colors.tealAccent
-                                      )
-                                  ),
-                                  hintText: "Input Text",
-                                  labelText: "Password",
-                                  labelStyle: TextStyle(color: Colors.grey),
-                                  //suffixIcon: Icon(Icons.visibility,color: Colors.grey,),
-
-                                  // errorText: snapshot.error),
-                                ),
-                              ),
-                              //SizedBox(height: 20,),
-                              TextField(
-                                keyboardType: TextInputType.text,
-                                obscureText: true,
-                                decoration: InputDecoration(
-
-                                  focusedBorder: OutlineInputBorder(
-                                      borderSide: BorderSide(
-                                          color: Colors.tealAccent
-                                      )
-                                  ),
-                                  hintText: "Input Text",
-                                  labelText: "Confirm Password",
-                                  labelStyle: TextStyle(color: Colors.grey),
-                                  //suffixIcon: Icon(Icons.visibility,color: Colors.grey,),
-
-                                  // errorText: snapshot.error),
-                                ),
-                              ),
+                               SizedBox(height: 10,),
+                              buildTextField("New Password",  false),
+                              buildTextField("Confirm new Password",  false),
+                              SizedBox(height: 20.0,),
                               Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  //mainAxisAlignment: MainAxisAlignment.center,
+                                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                                   children:<Widget>[
                                     ButtonTheme(
                                       // minWidth: 400,
@@ -192,7 +170,9 @@ class _RegisterState extends State<Register> {
                                       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
                                       child: RaisedButton(
                                         color: Colors.tealAccent,
-                                        onPressed: () {},
+                                        onPressed: () {
+
+                                        },
                                         child: Text("SUBMIT&PROCEED"),
                                       ),
 
