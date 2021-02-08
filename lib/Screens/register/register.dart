@@ -23,7 +23,6 @@ class _RegisterState extends State<Register> {
             onTap: (){
               FocusScope.of(context).unfocus();
             },
-            //SingleChildScrollView(
             child: SafeArea(
                 child: SingleChildScrollView(
                     child: Container(
